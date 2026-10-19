@@ -77,6 +77,16 @@ resource "aws_kms_key" "logs" {
         Condition = { ArnLike = { "kms:EncryptionContext:aws:logs:arn" = "arn:aws:logs:${var.region}:${local.account_id}:*" } }
       },
       {
+        # SNS alarm mövzusu bu açarla şifrələnir (AWS-0095). AWS-managed "alias/aws/sns" açarı
+        # EventBridge və CloudWatch-un dərc etməsinə icazə vermir, ona görə öz açarımız lazımdır.
+        Sid       = "SnsPublishers"
+        Effect    = "Allow"
+        Principal = { Service = ["events.amazonaws.com", "cloudwatch.amazonaws.com"] }
+        Action    = ["kms:GenerateDataKey*", "kms:Decrypt"]
+        Resource  = "*"
+        Condition = { StringEquals = { "aws:SourceAccount" = local.account_id } }
+      },
+      {
         Sid       = "CloudTrail"
         Effect    = "Allow"
         Principal = { Service = "cloudtrail.amazonaws.com" }

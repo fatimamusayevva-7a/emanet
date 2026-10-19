@@ -1,8 +1,9 @@
 # Monitorinq və aşkarlama (NIST CSF DE, ISO 27001 A.8.15–A.8.16).
-# Qeyd: alarm mesajlarında sirr yoxdur. AWS-managed "alias/aws/sns" açarı EventBridge-in
-# dərc etməsinə imkan vermədiyi üçün mövzu SSE-siz saxlanılır (Checkov CKV_AWS_26 — əsaslandırılmış istisna).
+# Alarm mövzusu öz KMS açarımızla şifrələnir (AWS-0095, CKV_AWS_26). Açarın siyasəti
+# EventBridge və CloudWatch-a dərc etməyə icazə verir (kms.tf, "SnsPublishers").
 resource "aws_sns_topic" "alerts" {
-  name = "${local.name}-alerts"
+  name              = "${local.name}-alerts"
+  kms_master_key_id = aws_kms_key.logs.arn
 }
 
 resource "aws_sns_topic_subscription" "email" {
