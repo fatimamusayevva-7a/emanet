@@ -53,14 +53,14 @@ resource "aws_security_group" "app" {
     cidr_blocks = var.allowed_ingress_cidrs
   }
   ingress {
-    description = "HTTP -> HTTPS yonlendirme ve Let's Encrypt HTTP-01"
+    description = "HTTP to HTTPS yonlendirme ve LetsEncrypt HTTP-01"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = var.allowed_ingress_cidrs
   }
   egress {
-    description = "AWS API-leri, Let's Encrypt, paket depolari (HTTPS)"
+    description = "AWS API-leri, LetsEncrypt, paket depolari (HTTPS)"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
