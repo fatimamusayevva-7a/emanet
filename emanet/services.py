@@ -29,6 +29,10 @@ class Emanet:
         return self.settings.secret("audit_hmac_key")
 
 
+_SWITCH_COLUMNS = frozenset({"state", "updated_at", "last_reminder_at", "reminders_sent", "release_at",
+                             "released_at"})
+
+
 def new_id(prefix: str) -> str:
     return f"{prefix}_{secrets.token_urlsafe(16)}"
 
@@ -109,8 +113,12 @@ def apply_decision(app: Emanet, conn, v, d: switch.Decision, now: float, actor: 
         else:  # pragma: no cover
             raise ValueError(action)
 
+    # Sütun adları yalnız sabit allowlist-dən gəlir, dəyərlər isə parametr kimi ötürülür
+    unknown = set(fields) - _SWITCH_COLUMNS
+    if unknown:
+        raise ValueError(f"icazəsiz sütun: {sorted(unknown)}")
     sets = ", ".join(f"{k}=?" for k in fields)
-    conn.execute(f"UPDATE vaults SET {sets} WHERE id=?", (*fields.values(), v["id"]))
+    conn.execute(f"UPDATE vaults SET {sets} WHERE id=?", (*fields.values(), v["id"]))  # nosec B608 — allowlist
     if d.state != v["state"] or d.actions:
         audit.record(conn, app.audit_key, ts=now, actor=actor, action=f"switch.{v['state']}->{d.state}",
                      vault_id=v["id"], actions=",".join(d.actions) or "-")

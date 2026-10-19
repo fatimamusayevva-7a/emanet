@@ -1,0 +1,11 @@
+# Trivy istisnaları — hər biri əsaslandırılıb (ISO 27001 A.8.9, risk reyestri R-18)
+
+# İctimai veb xidmət: 443 və 80 portları internetdən açıq olmalıdır.
+# 80 yalnız HTTPS-ə yönləndirmə və Let's Encrypt HTTP-01 üçündür; SSH (22) yoxdur.
+AVD-AWS-0107
+AWS-0107
+
+# Çıxış trafiki (egress) yalnız 443/80 portları ilə məhdudlaşdırılıb: AWS API-ləri,
+# Let's Encrypt və paket depoları sabit IP aralığına malik deyil.
+AVD-AWS-0104
+AWS-0104
