@@ -29,7 +29,7 @@ provider "aws" {
       Project            = "emanet"
       Environment        = var.environment
       Owner              = var.owner_tag
-      DataClassification = "restricted"      # ISO 27001 A.5.12 — təsnifat etiketi
+      DataClassification = "restricted" # ISO 27001 A.5.12 — təsnifat etiketi
       ManagedBy          = "terraform"
     }
   }

@@ -30,7 +30,7 @@ resource "aws_kms_key" "release" {
         Action    = ["kms:GenerateDataKey", "kms:Decrypt", "kms:ReEncryptFrom", "kms:ReEncryptTo"]
         Resource  = "*"
         Condition = {
-          StringEquals = { "kms:EncryptionContext:app" = "emanet", "kms:EncryptionContext:purpose" = "release-key" }
+          StringEquals                = { "kms:EncryptionContext:app" = "emanet", "kms:EncryptionContext:purpose" = "release-key" }
           "ForAllValues:StringEquals" = { "kms:EncryptionContextKeys" = ["app", "purpose", "vault_id"] }
         }
       }

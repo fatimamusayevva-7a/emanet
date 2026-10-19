@@ -113,7 +113,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       },
       {
         type = "metric", width = 12, height = 6, properties = {
-          title = "Planlasdirici", region = var.region, stat = "Sum", period = 3600,
+          title   = "Planlasdirici", region = var.region, stat = "Sum", period = 3600,
           metrics = [["Emanet", "TickSucceeded"], ["AWS/Lambda", "Errors", "FunctionName", aws_lambda_function.tick.function_name]]
         }
       }

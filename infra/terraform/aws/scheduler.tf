@@ -25,9 +25,9 @@ resource "aws_lambda_function" "tick" {
   architectures    = ["arm64"]
   environment {
     variables = {
-      APP_URL           = local.origin
-      SCHEDULER_SECRET  = aws_secretsmanager_secret.scheduler.arn
-      METRIC_NAMESPACE  = "Emanet"
+      APP_URL          = local.origin
+      SCHEDULER_SECRET = aws_secretsmanager_secret.scheduler.arn
+      METRIC_NAMESPACE = "Emanet"
     }
   }
   tracing_config { mode = "Active" }
