@@ -8,7 +8,7 @@ resource "aws_kms_key" "release" {
   description              = "Emanet: seyflerin zaman kilidi acarlari (R)"
   enable_key_rotation      = true
   rotation_period_in_days  = 365
-  deletion_window_in_days  = 30
+  deletion_window_in_days  = var.teardown_friendly ? 7 : 30
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   policy = jsonencode({
     Version = "2012-10-17"
@@ -46,7 +46,7 @@ resource "aws_kms_alias" "release" {
 resource "aws_kms_key" "data" {
   description             = "Emanet: S3 seyf obyektleri ve Secrets Manager"
   enable_key_rotation     = true
-  deletion_window_in_days = 30
+  deletion_window_in_days = var.teardown_friendly ? 7 : 30
 }
 
 resource "aws_kms_alias" "data" {
@@ -57,7 +57,7 @@ resource "aws_kms_alias" "data" {
 resource "aws_kms_key" "logs" {
   description             = "Emanet: CloudWatch Logs ve CloudTrail"
   enable_key_rotation     = true
-  deletion_window_in_days = 30
+  deletion_window_in_days = var.teardown_friendly ? 7 : 30
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [

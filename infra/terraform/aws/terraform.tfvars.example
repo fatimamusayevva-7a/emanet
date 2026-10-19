@@ -7,3 +7,7 @@ ses_sender   = "siz@example.az"
 repo_url     = "https://github.com/USERNAME/emanet.git"
 repo_ref     = "v1.0.0"
 # domain     = "emanet.example.az"   # boş qalsa <IP>.sslip.io
+
+# Qısa sınaq yerləşdirməsi (bir neçə saatlıq nümayiş, sonra terraform destroy):
+# teardown_friendly = true   # S3/Backup boşaldılır, KMS 7 gün, sirlər dərhal silinir, Vault Lock söndürülür
+# object_lock_days  = 1

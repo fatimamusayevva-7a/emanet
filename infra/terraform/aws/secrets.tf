@@ -17,7 +17,7 @@ resource "aws_secretsmanager_secret" "app" {
   name                    = "${local.name}/app"
   description             = "Emanet tetbiq sirleri (HMAC acarlari)"
   kms_key_id              = aws_kms_key.data.arn
-  recovery_window_in_days = 30
+  recovery_window_in_days = var.teardown_friendly ? 0 : 30
 }
 
 resource "aws_secretsmanager_secret_version" "app" {
@@ -34,7 +34,7 @@ resource "aws_secretsmanager_secret_version" "app" {
 resource "aws_secretsmanager_secret" "scheduler" {
   name                    = "${local.name}/scheduler"
   kms_key_id              = aws_kms_key.data.arn
-  recovery_window_in_days = 30
+  recovery_window_in_days = var.teardown_friendly ? 0 : 30
 }
 
 resource "aws_secretsmanager_secret_version" "scheduler" {

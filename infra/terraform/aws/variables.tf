@@ -83,3 +83,9 @@ variable "allowed_ingress_cidrs" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
+variable "teardown_friendly" {
+  description = "Qisa sinaq yerlesdirmesi: terraform destroy butun resurslari silə bilsin (istehsalda false)"
+  type        = bool
+  default     = false
+}

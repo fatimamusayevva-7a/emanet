@@ -6,7 +6,7 @@
 resource "aws_s3_bucket" "vaults" {
   bucket_prefix       = "${local.name}-vaults-"
   object_lock_enabled = true
-  force_destroy       = false
+  force_destroy       = var.teardown_friendly
 }
 
 resource "aws_s3_bucket_versioning" "vaults" {
@@ -104,7 +104,7 @@ resource "aws_s3_bucket_policy" "vaults" {
 # ----------------------------------------------------------------- log bucket (CloudTrail)
 resource "aws_s3_bucket" "trail" {
   bucket_prefix = "${local.name}-trail-"
-  force_destroy = false
+  force_destroy = var.teardown_friendly
 }
 
 resource "aws_s3_bucket_versioning" "trail" {

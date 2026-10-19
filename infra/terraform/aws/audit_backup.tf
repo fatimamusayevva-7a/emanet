@@ -25,11 +25,15 @@ resource "aws_sesv2_email_identity" "sender" {
 
 # AWS Backup — EBS (SQLite DB) gündəlik snapshot, 35 gün saxlama; RPO ≤ 24 saat
 resource "aws_backup_vault" "main" {
-  name        = "${local.name}-backup"
-  kms_key_arn = aws_kms_key.data.arn
+  name          = "${local.name}-backup"
+  kms_key_arn   = aws_kms_key.data.arn
+  force_destroy = var.teardown_friendly
 }
 
+# Vault Lock istehsalda həmişə aktivdir; yalnız qısa sınaq yerləşdirməsində söndürülür,
+# əks halda ehtiyat nüsxələr müddəti bitənə qədər hesabı silmək mümkün olmazdı.
 resource "aws_backup_vault_lock_configuration" "main" {
+  count               = var.teardown_friendly ? 0 : 1
   backup_vault_name   = aws_backup_vault.main.name
   min_retention_days  = 7
   max_retention_days  = 90
