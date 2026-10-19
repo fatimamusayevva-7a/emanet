@@ -1,0 +1,17 @@
+id,asset,type,owner,classification,location,confidentiality,integrity,availability,notes
+A-01,Seyf məzmunu (şifrəli qutu),Məlumat,Seyf sahibi (istifadəçi),MƏHDUD,S3 vaults/ (SSE-KMS + brauzer AES-256-GCM),5,5,4,Server açıq mətni görmür
+A-02,Zaman kilidi açarları R (KMS-sarınmış),Kriptoqrafik açar,CISO,MƏHDUD,SQLite vaults.release_key_ct + AWS KMS,5,5,5,Yalnız EncryptionContext ilə açılır
+A-03,KMS master açarları (release/data/logs),Kriptoqrafik açar,CISO,MƏHDUD,AWS KMS (HSM),5,5,5,İllik rotasiya; 30 günlük silinmə pəncərəsi
+A-04,Şifrəli Shamir hissələri,Məlumat,Etibarlı şəxslər,MƏHDUD,SQLite trustees.share_box,4,5,5,ECIES P-256; hər biri ayrı açıq açarla
+A-05,Sarınmış DEK-lər (owner/recovery/release),Kriptoqrafik açar,Seyf sahibi,MƏHDUD,SQLite vaults,5,5,5,AES-GCM + AAD
+A-06,İstifadəçi hesabları (e-poçt; ad; Argon2id heş),Fərdi məlumat,DPO,MƏXFİ,SQLite users,4,5,4,Parol və enc_key saxlanılmır
+A-07,Etibar qrafı (kim kimin etibarlı şəxsidir),Fərdi məlumat,DPO,MƏXFİ,SQLite trustees,4,4,4,Sosial münasibətləri açır — minimallaşdırılıb
+A-08,Audit jurnalı və təhlükəsizlik hadisələri,Qeyd,Daxili auditor,MƏXFİ,SQLite audit + CloudWatch Logs,3,5,4,HMAC heş zənciri
+A-09,Tətbiq sirləri (HMAC açarları),Sirr,Operator,MƏHDUD,AWS Secrets Manager,5,5,5,Diskdə və kodda yoxdur
+A-10,Mənbə kodu və brauzer JS,Proqram təminatı,İnkişaf rəhbəri,DAXİLİ,GitHub,2,5,4,JS-in bütövlüyü zero-knowledge-in əsasıdır
+A-11,EC2 instansiyası və konteynerlər,İnfrastruktur,Operator,DAXİLİ,AWS eu-central-1,3,4,4,SSH yoxdur; IMDSv2
+A-12,Planlaşdırıcı (EventBridge + Lambda),İnfrastruktur,Operator,DAXİLİ,AWS,2,5,5,Dayanarsa xatırlatmalar getmir
+A-13,Bildiriş kanalı (SES e-poçt),Xidmət,Operator,DAXİLİ,AWS SES,3,4,5,Məktublarda sirr yoxdur
+A-14,CloudTrail və log bucket,Qeyd,CISO,MƏXFİ,S3 trail bucket,3,5,3,Log file validation
+A-15,Ehtiyat nüsxələr (EBS snapshot),Məlumat,Operator,MƏHDUD,AWS Backup Vault (Vault Lock),5,5,4,35 gün
+A-16,Əməkdaş noutbukları və YubiKey-lər,Avadanlıq,CISO,DAXİLİ,Ofis/ev,3,3,3,Disk şifrələməsi + MDM

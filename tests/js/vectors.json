@@ -1,0 +1,118 @@
+{
+  "shamir": {
+    "secret": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+    "n": 5,
+    "t": 3,
+    "seed": "shamir-1",
+    "shares": [
+      "AWWYCjKxGdFLxbeZY_le24V8GuIq9bH11qqAgBhLv9cH",
+      "Avj1yx84a-EUBMDuS5WYlhrSJqAThTHAQ-_ruGyxT1QJ",
+      "A51swy6NdzZYyX59I2DLQ5C-LVAqZJUjgl1yIm_m7Z0R",
+      "BCOrwthTmoA7Eg6Q_Z7wgU3n-1LAFpqNpvunRypRjaur",
+      "BUYyyunmhld337ADlWujVMeL8KL59z5uZ0k-3SkGL2Kz"
+    ]
+  },
+  "gf": [
+    [
+      87,
+      131,
+      193
+    ],
+    [
+      2,
+      135,
+      21
+    ],
+    [
+      255,
+      255,
+      19
+    ],
+    [
+      1,
+      171,
+      171
+    ],
+    [
+      83,
+      202,
+      1
+    ]
+  ],
+  "kdf": {
+    "password": "Bakı-Xəzər 2026!",
+    "salt": "ABEiM0RVZneImaq7zN3u_w",
+    "master": "xV2rZk5UGyLmmjPvR3hmr1bVAFbcEOkOj22ODbJWbxA",
+    "auth": "atxND8LQ_-ah0QhoGGKZV-91XiG93KcJDVxll-oj74g",
+    "enc": "dZKsFFD4FFekHcpgboGCJc4VbU9HG4AGh-TEAlbHXjk"
+  },
+  "release_kek": {
+    "S": "BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc",
+    "R": "CQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk",
+    "vault": "v_test",
+    "kek": "2mssSUnMNY0cKexz3nZdhfq9AXVdILUZheA4vAGFevs"
+  },
+  "commitment": {
+    "vault": "v_test",
+    "share": "AWWYCjKxGdFLxbeZY_le24V8GuIq9bH11qqAgBhLv9cH",
+    "hex": "082836549571d697d699981d56755eccaedd1ae5c21565db27b44053b4df891d"
+  },
+  "recovery": {
+    "code": "ABCDE-FGHJK-LMNPQ-RSTUV-WXYZ2",
+    "auth": "-rQr2wthkFLcgEYTemeZ8q1DB95FCuDfh9qvuIpXXs0",
+    "enc": "V9JXwWo1CeVJkIQxcdaz7QWNIGkScCdL7Vh9WreSmkI"
+  },
+  "pad": [
+    {
+      "len": 0,
+      "padded_len": 4096
+    },
+    {
+      "len": 1,
+      "padded_len": 4096
+    },
+    {
+      "len": 4092,
+      "padded_len": 4096
+    },
+    {
+      "len": 4093,
+      "padded_len": 8192
+    },
+    {
+      "len": 65532,
+      "padded_len": 65536
+    },
+    {
+      "len": 65533,
+      "padded_len": 131072
+    },
+    {
+      "len": 200000,
+      "padded_len": 262144
+    }
+  ],
+  "seal": {
+    "key": "AwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM",
+    "aad": "emanet/v1/vault|v_test|4",
+    "box": {
+      "v": 1,
+      "iv": "Th_NgFU4MYFFRQ8j",
+      "ct": "utLNx3J0NNyDVrVYFwn-_X2mDAwEsEIRqdZo3yyOythklgeUmyFTGobLtDACJT-eEKoFzYkvmNU8UoiLLLY65uNXB3auOJMr1p7O4frlG0PWCMTQADY4xIDqW6PCkWJ0HAinmPKcsbOwIVn5csdbMglEjmbSfOp2m1CrMmaHOMkaRHWYQubawneqi9kcT0GPi7aGmS3_D32QZK6-cpvV-IiMrd9bym-TnpLpZhhoZfDQnggz56bWwA2BXx7aFVAFTro62ifo-VFIxpXY8wpX_JyyGTL9xqU1Tjj7xsO_Hi0hLzdrVUkPc7A3O9gC4EAkNFZWo__vcjl334r6Y_qvj9NZirvQsrANkQlc8JblLR866R5_Z6PwX7cZWcZAqJpjeoQZ8wxq559O1N_zUp_PiByW5VXzJ5Yl3j4BckqOxatQ8nb11jNhEdR0eQD-MAj5yyqDK3mIcwrMAPRHpZfnggHuj7RZ6f4_l171sl4nM_X1P1czH80N39M9jSB6jekq4jWWQIhpZ3k3yajuE2BQFCqBORAVHe1a9cWfFOt6PCV4nkES4FmrM-8ctbwfu0aWhaOl3uTyhCNWyIGk1iNw5XpvaIcq1uxPyCRa6VJkSPfV8OfeJ0Lkx2fj15xodI5uFSXyydfoQpbqJLSJizl1w9mZcOvaePGc_G8jIwsZtZSLP-Php-Lr7DWhafegq4AQu8XwpyzYro8OYJaD3r0bdZZiYtoOm64Ph81oH61Wpf6C0r7rLg9DtpBwnejk80A1jJlHKNkVn7sl8dvQ-TYkrzv5BM-Ocd1xhgpriMuCrNzCmY75aSzG4Ae3GqoFgSo3-MMhXToqRUa47dOR_tMAlpdjTv-utVOmK-a-QTJ2xvWfEtZSQab0ycG84uGnN3zvZkvUOn0zExvK32UbEdu-dlAGZc-nRNAcFbL2cAiIu3_MHvmzYhbT1e9jy6FUXiqPH_V0Uf-0GKAKN1tz9nypOrXebsWJqoZuQA1OSDi6XsBpng2kI5gINohVgCjXLbS4lJOmNFUVsDG5FO6Eo0nsVIV1mdiiYBKPwxjH0oGjTk-lqHcer9lq-vjpUlN_2v5Jww_GYQZx0Gy9p7cBRneMH_J0VDuSIMWdF1aqvOBG_cLNq0mvZZ42zrwDspEBSklLjuSFf-7AFnQi3sIrVRniU-qMMorlLUx2TOvHULhFdR3ZRx35pDgLfr7U2F6G2G8KR1cKN41JtIQJ-UmVHUgOv4KVWIMGkXFGhEqJliSyRRFGOB5sSCWq94VwihiejpAApZ9_Roxtbek2IabqimKyk_nfAJQ4GZX3s8_rUcQYs5-w1cCzQa7im6OpCxw3-HTUbUm_IEkqBDXPKv8Oiv32GoOF0rML2xARcMGtC7sbpty0ixI4fRrYe3ccR70GtFE-oaKvSVhZfUTmQI7upu9A9AtqZXVIy9GvltLOIT19VrKlQp8pBCb3iNmumV66jHBvw_jY0zCnK7KDQlRkoOt0e5l3HbitwHiIHmHBRw2s_Gw2jTEavg2JX5Jjqt8fSp8CsXsU0GbL8UKrmw2YZtwa1n5l-_9mERJkl29gUoHBzMid7YpF2FVP6TyLPOtPc-pGxGWQTcsRRcOQqwB2vgzzp2MsBdB8miaiXi7DwNHHuE_o0KMbwkdYT0-kIObvs9wkaRjAgsC4ES2k3RYXXB8ZpFblukoaShmO7dwSMvRInTU9s8hCC9QdAUfWQAPBYyR4GDv0XMOMitzwlwj-JbnkB9lVXc7gUuxEolKGt7SxS3ZkaeB6YSUJGGYEX1HRDqSskxLsy0oMY1OcySGuNnIJ4Dm5Qsp7lv1vhsYAntvDr_H6j53tzRQ14GVIrziqnpPUBWne2Llo1o55seju-2JYCXwmjGbXpRUxYwYwklne7uZiX_3uWgElw1R94hP-YNAkXdTNU5UTkyAgWI7__xKJJRpBtqQQQ3bsxOneiXc51avWlT9U2PUf_LuyBHDGKE8nnjy3Y-4VTWYFL_qeCEIAAsHnyZVbtk5DKvXJugWMIriYId73FLk_Usv5rgmb7ytkdBs6JP2AXNHtq6UlpothqEjLvm8CmQ1bTgN7lSiXvhgTrj2chXceYl0y0jSeYHeAO28ly9kdsbg_wAb0dHWzxbn70bylmSjA8lPadMzeHbwSuDMqqRrrudQBZlDE_xth8kRVDvTBxJq-g5JKNZJu5qNuPGgnHUtho73PtLSLEvCWlANkGTWmE3dQKikAb3GmdmRN3A_ygr3N3nGjUK7AsgAKARpzgCW0YLd4KFrnYGcNvP8xt5cKKwBx6MlRW1MlLU3aXdVx6lhbFzFv7vrGDSVn1d9L9yLE3nmYXj5tbcjG9z3PTYZOWbVQYjIMc3Y8AybDz2iDS1g9ENycCec8JeNxiYWPDxWsqvBZoGPz9ejlydtFpqcuicjtpQTy7cCskBso-magEHTH9J4idfAa7Ple3g-A0OYco2SNBtN-kkR4BJrpP8nMLZUxlEWB_yHVw8wUnP4BWpv-2vRwseFCWOHBo7rja9WZk4WMdGcaXIrviEBWKhLNHZHvrwh2AxIqcXjno0Ld_obUlb5IzT309kAwSqfsYodwiXC_uGq4ToevQvfG1jclN3ErNRDlZtWwQjXu-Ou9fCn0IzmmkTN-33e_RfV4kNJ88sHXjIYRpfuJWUiJTAEtv4iG0lHQpozlZ0pvvRg_LUEZ-GvmOr1NDMu1ObDSRIMIQ-Dkp-VC_u_Bde2QYuZ4J3gr-zyEfkeh0yErQssJOjj500FeOc4IoOSAiPauAhvACri8-ZflswVwqAfGg3eZRwWRfIaVYkQ4XbbeZ3mZ0n6-ZF2w_qhVHgFc37HW2jhU0DbzCdHOItPzNYg7X1kEYlORmqgbGqVbiXNcBOxL2oQ4zU9WVHRGlyjSz_3PZmDJIppkCA_w9yoACKP8H-f_TMFUt8JqCyA9LYqhnMPQZCw-cEFgmU_ivU513P5KhM2Un4K_UMvgWab52YHhiw02C7DRR10SgohQEhSingiv8K_5yNcuKcoB5VRXSS22b-D6aJ0i6JO0VIkp4F6DMqR0gNmApYnXYISu4XEO2XCAc_gUCs8oD_D0CgBbhrwAEFIuQ6-w9w6RYWpH_ojIsHpjqCD8KOPI1tz3TLIWfhoGjqJqVMTn7M1OyZzqL_9eX2d7KWM8Xx3yN2kUVSaGX7wSQ2iruG-8S8CiBLa_SpbylEptik_FAYY0mQnGajuDCXIhbQP4EurExH3REF12yTC2Ji_fDiQAcJvgGVBgMYBSuc6Ai1a_zBS0KcjQHAVcKybvadoIOkreybj5vYGhE62iRX62h5gbS5M4ngptOu0i--Y4cUZ2pdsPWDHSyGVq5J2QmHbQYxV5zb8vfsk-tHDxWNjr0Ovk5ul7f-IKTqMmiDbI8g3SAQtq_BdWXujMUERsCS-WJULmiQXfpodJpc1R611qkXp5Sv9lKkZDeawDmvc8dWAsqAZ-b63UV49gOF_KhrShLsakkz0W-xpZYdgi06Y7gzBi6wbmJyQmpKxJpjvbml91ukNTOkInVXWj5KiPk8BhY3z1jnrccJWd84x8NLJW5Xzp4yOpGCQmR3_uB3d38nSrTbZG4hIgbSDFFB2k-j1olp8IY7NHTEmc6FFchQMmvgl3-xthGtcfMhJO6giqBlMx_BbivxJqaTOumTUTVmfrVEXoGeXJ5vQKua2L9B_2CyzYasH0P2OPJvVb5GOXSKDK2SQ_Iv0_8GrB31BtljdF9zcn5rIzaY9eGtN0Ngh-GfyFdBWIMriyWn8uYm53pfUryPuTvm29L8Ty2VwN3t9gzAS0fDcog7oO_CjtPwQsT2OiK2w-S2Q2JeBhvxmyQvAa8h3G2e0RU56Mhpenv5DwsBJ8UiuGD8asj3V7VNZQAq7i5mUiaupz7IQBgvYFusK-36By67jHWRs0Jpz5M9z13Qw2nqu8a5xU6stwcblhjNkVGAhwQbYJEkanLvteJSOlNFgDSdlUk1DQ2eV35whObNTgqhSh6mmBjnGQch-iLIJZbtB3p5J2rtlkeqY8IqRbkJQvVfO71z586LtVahOBpq6Aqcm_wih4jI0cK3nzuOETQAdE7DcJXhq5YV4-YJd1kzUb_Hqt3AVPStmBq8J-v_S9oOoEp9wHumYWer_NK8Up76s0Z6KcwULD0-pXsHvxaEav0wrPjojkmVpJSBREcf_t-nJEv2J_Cwp2jkmDIAVMHmKnevOBZa8hFYeNzKDZbIG2ETcb-NpjEgMVzjmOIMrz_0lFN_iB7cXyiTlCN7pTbQ7W9TkkPw_uUbtTGCDd1eoFJd3yCJu37HHPrToeE9YCpdN7A9esb8icRRJklzh57x0uHX_pP756fW54v66hsP_i9YNoSqB7sb1NiId_CIgFIVsCMsyJXtIM4fqAeVyIAj0JeeSKxFg_O44A6oo4OIXPJpUQAq-ZC_vhcPolUIjWdyimzAmu6kFNQqn40dgf6z5-oFuQIqHfajjwQWKA_HVhyVnhIOx220wSXZ9Kzd1bkNdMicczkLPemCYOhssB1-16xp2QFd-e29dHi-aFshPXIGPokp0bDPjnfpV9cjVzN1zqMJmT00MYRXoYY5mzVf-hr1qyPLvpQqJwVlrrniKBzIsP580byxcevcCddNfxdLgmZRKlMpHo7d3GKq_yBkO6l4Wtx88fNnLSrNLA_muT2jRsGeMoUlMIkOldoquXxLqgt1ao5ueimm2wfgfs0qNEODxXFFuBI2FGGd8n49p-k1DVXo-c83mG3miW9UbHYihnLYv7Dk6tdvQ4c7jr351LiC92CNeDrxWqf1guKEnjtYOxERkWR8O8T0h-ow8tHx_lh1oxP4JES395HzqiSkkl05d7kOhG6DcUJ00F6DMg_pacrKN5Wsao3AdDVtX29RwXMPaAdgqzgl0TXfQFHQ2UVxA5TVb_iYVvby9nz0B1o80Z5JBpnRLQ02habbYJf2QNSOtUWJSw7QtI7j-vFJ3DjFwup_6kh2-JTCFLI3TnuXWtH-yLkmypjB7Xr9c3f3Mho0YOGIMeVxzdhjjCiOQ2CKAZmMh-N1mMgyeb7b36uc4GXw_iGqFhs69us1_Huzpwq5W5sRNtJLROAVJlujhtBUMr7Vg0ImpfyXO8ZuSe19-8NCvQw6VDUb6BLnnOP9xCSzff2HHyrOCTzqq69wzA66smjpEN0mlyBmiIBf44hQNHylkRK1SX3HWv91S5ImHKOdHiw3bhsWzwcitCh_fk2U4oTNtBN4me0XJxdoOiNLm8GkzMMLAiVUer50Ub22gxiAHWUdi0F5p1-vTrfjuQ7FzDaDLFvURPyYP7V6ArbuqsTLhEy4ROQjshx0mMR-A9uLNLPrU-cSHboKROmW2p5XPx5kBDv-jRokOoW3ScZzI5U8r-kIAZIKuCIDQww_TltqCgu9Z8wgag67KMX_u_0QvOd62v7x3BKgr8mH54YJV7HDkHxG_isxyzK036Wkk"
+    },
+    "plaintext": "Salam, Əmanət!"
+  },
+  "ecies": {
+    "pkcs8": "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgiOlYIP_1C6L7K3cnsNz8EgAhd74pZx8D2AgD7GhmJHuhRANCAASMhURI9eB_LlLEZuTy6LomN1tmRE92th3Vo4ey6FdBGAqR4tSdWAs57Mu_Pi0I82fLX6EncXXlhLgtWOTvTLOS",
+    "public": "BIyFREj14H8uUsRm5PLouiY3W2ZET3a2HdWjh7LoV0EYCpHi1J1YCznsy78-LQjzZ8tfoSdxdeWEuC1Y5O9Ms5I",
+    "fingerprint": "13A4 303A 5F97 C4DA 0DED 7970 802C 53D2",
+    "context": "emanet/v1/share|v_test|u_trustee|2",
+    "box": {
+      "v": 1,
+      "epk": "BF0DtR89eBh7z7cHKTYoYQyfnRiYEb2_IYkoNy0J5Dg9oNKL49CcCDS5XCwd5zcOVe-a5SuqXXNt65aey8POZHM",
+      "iv": "QgaKNX9ny0BeZEHV",
+      "ct": "eeM_H9Ka6WZcBV8UzJ61cGQ-weVeomiFRJ0ogE3s3w"
+    },
+    "plaintext": "c2hhcmUtYnl0ZXMtMTIz"
+  }
+}

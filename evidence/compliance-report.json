@@ -1,0 +1,217 @@
+{
+  "generated": "2026-10-19 01:07 (Bakı)",
+  "passed": 29,
+  "total": 30,
+  "results": [
+    {
+      "id": "C-01",
+      "control": "A.8.24",
+      "title": "PBKDF2 iterasiyası ≥ 600 000 və brauzer ilə server eynidir",
+      "status": "PASS",
+      "evidence": "python=600000, js=600000"
+    },
+    {
+      "id": "C-02",
+      "control": "A.8.24",
+      "title": "Argon2id parametrləri OWASP minimumundan aşağı deyil (m≥19 MiB, t≥2)",
+      "status": "PASS",
+      "evidence": "m=19456 KiB, t=2, p=1"
+    },
+    {
+      "id": "C-03",
+      "control": "A.8.24",
+      "title": "Qadağan olunmuş alqoritmlər/rejimlər istifadə olunmur (MD5, ECB, DES, RC4, Math.random)",
+      "status": "PASS",
+      "evidence": "tapılmadı"
+    },
+    {
+      "id": "C-04",
+      "control": "A.8.24",
+      "title": "Bütün AES-GCM çağırışları AAD ilə aparılır (seal/open_sealed boş AAD-ı qəbul etmir)",
+      "status": "PASS",
+      "evidence": "4 seal çağırışı, boş AAD: 0"
+    },
+    {
+      "id": "C-05",
+      "control": "A.8.24",
+      "title": "Kriptoqrafik uyğunluq vektorları mövcuddur (Python ↔ JS)",
+      "status": "PASS",
+      "evidence": "vektor bölmələri: ['commitment', 'ecies', 'gf', 'kdf', 'pad', 'recovery', 'release_kek', 'seal', 'shamir']"
+    },
+    {
+      "id": "C-06",
+      "control": "A.8.26",
+      "title": "CSP ciddidir: script-src 'self', unsafe-inline yoxdur, Trusted Types məcburidir",
+      "status": "PASS",
+      "evidence": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'; require-trusted-types-for 'script'; trusted-types 'none'"
+    },
+    {
+      "id": "C-07",
+      "control": "A.8.28",
+      "title": "Brauzer kodunda innerHTML/eval/document.write və brauzer yaddaşı yoxdur",
+      "status": "PASS",
+      "evidence": "11 fayl yoxlanıldı; pozuntu: yoxdur"
+    },
+    {
+      "id": "C-08",
+      "control": "A.8.31",
+      "title": "İstehsal konfiqurasiyası təhlükəli rejimləri rədd edir (demo, HTTP, lokal KMS)",
+      "status": "PASS",
+      "evidence": "rədd edilən: ['demo_mode', 'public_origin', 'cookie_secure', 'kms_backend']"
+    },
+    {
+      "id": "C-09",
+      "control": "A.8.5",
+      "title": "Sessiya cookie-si: __Host-, HttpOnly, Secure, SameSite=Strict; DB-də yalnız heş",
+      "status": "PASS",
+      "evidence": "bayraqlar ✓, DB-də SHA-256(token)"
+    },
+    {
+      "id": "C-10",
+      "control": "A.8.12",
+      "title": "Audit metadata-sında sirr adlı açarlar bloklanır",
+      "status": "PASS",
+      "evidence": "5/5 qadağan açar bloklandı"
+    },
+    {
+      "id": "C-11",
+      "control": "A.5.3",
+      "title": "Operatorun açılmanı məcbur edən endpoint-i yoxdur; audit yalnız auditora açıqdır",
+      "status": "PASS",
+      "evidence": "force-release endpoint: yoxdur, /api/audit → auditor"
+    },
+    {
+      "id": "C-12",
+      "control": "A.8.10",
+      "title": "Crypto-shredding: seyf silinəndə R, DEK sarğıları və hissələr məhv edilir",
+      "status": "PASS",
+      "evidence": "shred_vault ✓, CASCADE: 3, secure_delete ✓"
+    },
+    {
+      "id": "C-13",
+      "control": "A.8.11",
+      "title": "Sxemdə açıq mətn sütunu yoxdur (password, plaintext, dek, share)",
+      "status": "PASS",
+      "evidence": "101 sütun, qadağan: yoxdur"
+    },
+    {
+      "id": "C-14",
+      "control": "A.8.20",
+      "title": "Security Group-da SSH (22) və ya bütün portlar açıq deyil",
+      "status": "PASS",
+      "evidence": "ingress portları: ['443', '80']"
+    },
+    {
+      "id": "C-15",
+      "control": "A.8.2",
+      "title": "EC2-də SSH açarı yoxdur, IMDSv2 məcburidir, EBS şifrəlidir",
+      "status": "PASS",
+      "evidence": "key_name yoxdur, http_tokens=required, encrypted=true"
+    },
+    {
+      "id": "C-16",
+      "control": "A.8.24",
+      "title": "Bütün KMS açarlarında avtomatik rotasiya aktivdir",
+      "status": "PASS",
+      "evidence": "açarlar: ['release', 'data', 'logs'], rotasiya: ['release', 'data', 'logs']"
+    },
+    {
+      "id": "C-17",
+      "control": "A.5.3",
+      "title": "KMS release açarının siyasətində admin-ə kms:Decrypt verilmir; tətbiq yalnız kontekstlə",
+      "status": "PASS",
+      "evidence": "AccountAdmin: Decrypt yoxdur; AppUseWithContextOnly: EncryptionContext şərti"
+    },
+    {
+      "id": "C-18",
+      "control": "A.8.13",
+      "title": "S3: versioning + Object Lock + SSE-KMS + public access block",
+      "status": "PASS",
+      "evidence": "Versioning=Enabled, ObjectLock=GOVERNANCE, SSE=aws:kms, BPA=4/4"
+    },
+    {
+      "id": "C-19",
+      "control": "A.5.14",
+      "title": "S3 bucket siyasəti TLS olmayan və TLS<1.2 girişləri rədd edir",
+      "status": "PASS",
+      "evidence": "DenyInsecureTransport + DenyOldTLS"
+    },
+    {
+      "id": "C-20",
+      "control": "A.8.15",
+      "title": "CloudTrail: multi-region, log file validation, KMS şifrələmə",
+      "status": "PASS",
+      "evidence": "multi-region ✓, validation ✓, KMS ✓"
+    },
+    {
+      "id": "C-21",
+      "control": "A.8.16",
+      "title": "Monitorinq: təhlükəsizlik metric filter-ləri, planlaşdırıcı və KMS alarmları",
+      "status": "PASS",
+      "evidence": "9 metric filter, tick alarmları ✓, KMS EventBridge ✓"
+    },
+    {
+      "id": "C-22",
+      "control": "A.5.17",
+      "title": "Repozitoriyada sirr yoxdur (AWS açarı, PEM şəxsi açar, .env)",
+      "status": "FAIL",
+      "evidence": "pozuntu: ['.venv\\\\Lib\\\\site-packages\\\\boto3\\\\examples\\\\cloudfront.rst', '.venv\\\\Lib\\\\site-packages\\\\playwright\\\\driver\\\\node.exe'], .env: yoxdur"
+    },
+    {
+      "id": "C-23",
+      "control": "A.5.21",
+      "title": "Əsas asılılıqlar dəqiq versiya ilə bərkidilib",
+      "status": "PASS",
+      "evidence": "Flask==3.1.3; Werkzeug==3.1.8; cryptography==50.0.1; gunicorn==23.0.0"
+    },
+    {
+      "id": "C-24",
+      "control": "6.1.3 d",
+      "title": "SoA bütün 93 Annex A nəzarətini əhatə edir, hər birinin əsaslandırması var",
+      "status": "PASS",
+      "evidence": "93 nəzarət (tətbiq olunan 84, istisna 9)"
+    },
+    {
+      "id": "C-25",
+      "control": "7.5",
+      "title": "SoA-dakı bütün sübut faylları mövcuddur",
+      "status": "PASS",
+      "evidence": "çatışmayan: yoxdur"
+    },
+    {
+      "id": "C-26",
+      "control": "6.1.2",
+      "title": "Risk reyestri: bal = L×I, qalıq ≤ inherent, qalıq ≤ iştah (8), sahib və müalicə var",
+      "status": "PASS",
+      "evidence": "27 risk; cəmi bal 262 → 132 (−50%); xəta: yoxdur"
+    },
+    {
+      "id": "C-27",
+      "control": "6.1.3",
+      "title": "Risklərdəki nəzarətlər SoA-da 'tətbiq olunur' kimi qeyd olunub",
+      "status": "PASS",
+      "evidence": "uyğunsuzluq: yoxdur"
+    },
+    {
+      "id": "C-28",
+      "control": "6.1.2",
+      "title": "Risklərin aktivləri aktiv reyestrində var",
+      "status": "PASS",
+      "evidence": "16 aktiv; uyğunsuzluq: yoxdur"
+    },
+    {
+      "id": "C-29",
+      "control": "9.1",
+      "title": "Risk reyestrində istinad edilən testlər həqiqətən mövcuddur",
+      "status": "PASS",
+      "evidence": "13 istinad, çatışmayan: yoxdur"
+    },
+    {
+      "id": "C-30",
+      "control": "5.1",
+      "title": "Mövzu siyasətləri mövcuddur və əsas siyasətdən istinad olunur",
+      "status": "PASS",
+      "evidence": "8 siyasət; istinadsız: yoxdur"
+    }
+  ]
+}

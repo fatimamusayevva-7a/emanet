@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+data/
+.env
+*.tfstate
+*.tfstate.*
+.terraform/
+infra/terraform/aws/.build/
+infra/terraform/aws/terraform.tfvars
+node_modules/
+.DS_Store
+
+data-demo/
+evidence/screenshots/e2e-tmp/

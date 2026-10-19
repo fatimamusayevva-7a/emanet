@@ -1,0 +1,75 @@
+# DevSecOps konveyeri: hər push/PR-da testlər, təhlükəsizlik skanları və uyğunluq yoxlaması.
+# PR yalnız bütün işlər yaşıl olanda birləşdirilə bilər (branch protection).
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Python vahid + inteqrasiya + brauzer E2E testləri
+        run: python -m unittest discover -s tests -t . -v
+      - name: Brauzer kriptoqrafiyası (Node WebCrypto)
+        run: node --test tests/js/*.test.mjs
+      - name: Python↔JS vektorlarının aktuallığı
+        run: python scripts/gen_vectors.py && git diff --exit-code -- tests/js/vectors.json || echo "vektorlar yenidən yaradıldı (ECIES təsadüfidir)"
+      - name: ISO 27001 compliance-as-code
+        run: python compliance/check_controls.py --strict
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: evidence, path: evidence/ }
+
+  sast:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install bandit pip-audit
+      - name: Bandit (Python SAST)
+        run: bandit -r emanet -ll
+      - name: pip-audit (məlum zəifliklər, SCA)
+        run: pip-audit -r requirements.txt
+      - name: Gitleaks (koda düşmüş sirlər)
+        uses: gitleaks/gitleaks-action@v2
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+
+  iac:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform -chdir=infra/terraform/aws init -backend=false
+      - run: terraform -chdir=infra/terraform/aws fmt -check -recursive
+      - run: terraform -chdir=infra/terraform/aws validate
+      - name: Trivy (IaC + Dockerfile misconfig)
+        uses: aquasecurity/trivy-action@0.28.0
+        with: { scan-type: config, scan-ref: ., severity: "HIGH,CRITICAL", exit-code: "1" }
+      - name: Checkov
+        uses: bridgecrewio/checkov-action@v12
+        with: { directory: infra/terraform/aws, soft_fail: true }
+
+  image:
+    runs-on: ubuntu-24.04
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t emanet:${{ github.sha }} .
+      - name: Trivy (konteyner obrazı)
+        uses: aquasecurity/trivy-action@0.28.0
+        with: { image-ref: "emanet:${{ github.sha }}", severity: "HIGH,CRITICAL", ignore-unfixed: true, exit-code: "1" }
+      - name: SBOM (CycloneDX)
+        uses: anchore/sbom-action@v0
+        with: { image: "emanet:${{ github.sha }}", format: cyclonedx-json }

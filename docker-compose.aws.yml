@@ -1,0 +1,17 @@
+# AWS EC2 üçün əlavə: sirlər Secrets Manager-dən, KMS/S3/SES IAM rolu ilə (IMDSv2).
+# Konteyner IMDS-ə yalnız hop limit icazə verirsə çata bilər — app host şəbəkəsində işləmir,
+# ona görə rol kredensialları üçün AWS_EC2_METADATA hop limiti 2 tələb olunmasın deyə
+# "network_mode: host" istifadə edilir (alternativ: IMDS hop limit = 2).
+services:
+  app:
+    network_mode: host
+    expose: []
+    environment:
+      EMANET_HOST: 127.0.0.1
+    command: ["gunicorn", "--bind", "127.0.0.1:8000", "--workers", "1", "--threads", "8", "--timeout", "60",
+              "--access-logfile", "-", "--forwarded-allow-ips", "127.0.0.1", "emanet.wsgi:app"]
+  caddy:
+    network_mode: host
+    ports: []
+    environment:
+      UPSTREAM: 127.0.0.1:8000

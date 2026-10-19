@@ -1,0 +1,53 @@
+#!/bin/bash
+# EC2 ilk açılış skripti — sirr YOXDUR (sirlər tətbiq tərəfindən Secrets Manager-dən IAM rolu ilə oxunur).
+set -euo pipefail
+exec > >(tee /var/log/emanet-bootstrap.log) 2>&1
+
+dnf update -y --security
+dnf install -y docker git amazon-cloudwatch-agent dnf-automatic
+systemctl enable --now docker
+# Avtomatik təhlükəsizlik yeniləmələri (A.8.8)
+sed -i 's/^upgrade_type = .*/upgrade_type = security/; s/^apply_updates = .*/apply_updates = yes/' /etc/dnf/automatic.conf
+systemctl enable --now dnf-automatic.timer
+
+mkdir -p /usr/local/lib/docker/cli-plugins
+curl -fsSL "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-x86_64" \
+  -o /usr/local/lib/docker/cli-plugins/docker-compose
+chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+git clone "${repo_url}" /opt/emanet
+cd /opt/emanet
+git checkout "${repo_ref}"
+
+cat > /opt/emanet/.env <<EOF
+EMANET_ENV=production
+EMANET_PUBLIC_ORIGIN=${origin}
+EMANET_COOKIE_SECURE=true
+EMANET_TRUST_PROXY=true
+EMANET_DEMO_MODE=0
+EMANET_KMS_BACKEND=aws
+EMANET_AWS_KMS_KEY_ID=${kms_key_id}
+EMANET_STORAGE_BACKEND=s3
+EMANET_S3_BUCKET=${s3_bucket}
+EMANET_NOTIFIER=ses
+EMANET_SES_SENDER=${ses_sender}
+EMANET_SECRETS_ID=${secrets_id}
+EMANET_BOOTSTRAP_OPERATOR_EMAIL=${operator_email}
+AWS_REGION=${region}
+DOMAIN=${domain}
+ACME_EMAIL=${acme_email}
+EOF
+chmod 600 /opt/emanet/.env
+
+# Konteyner loglarını CloudWatch-a göndər (metric filter-lər bunlara baxır)
+cat > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json <<EOF
+{ "logs": { "logs_collected": { "files": { "collect_list": [
+  { "file_path": "/var/lib/docker/containers/*/*-json.log", "log_group_name": "${log_group}",
+    "log_stream_name": "{instance_id}/docker", "timestamp_format": "%Y-%m-%dT%H:%M:%S" },
+  { "file_path": "/var/log/emanet-bootstrap.log", "log_group_name": "${log_group}", "log_stream_name": "{instance_id}/bootstrap" }
+] } } } }
+EOF
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s \
+  -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+
+docker compose -f docker-compose.yml -f docker-compose.aws.yml up -d --build

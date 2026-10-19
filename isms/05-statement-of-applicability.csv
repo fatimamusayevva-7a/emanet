@@ -1,0 +1,94 @@
+control,name,theme,applicable,justification_and_implementation,evidence
+5.1,Policies for information security,Təşkilati,Y,Rəhbərlik tərəfindən təsdiqlənmiş İT siyasəti və 10 mövzu siyasəti; ildə bir dəfə və ya əsaslı dəyişiklikdə baxış,isms/policies/information-security-policy.md
+5.2,Information security roles and responsibilities,Təşkilati,Y,"RACI matrisi: CISO, DPO, operator, auditor, inkişaf etdirici",isms/01-leadership-and-roles.md
+5.3,Segregation of duties,Təşkilati,Y,"Operator audit jurnalını oxuya bilmir, auditor istifadəçi idarə edə bilmir; heç bir rol seyfi aça və ya açılmanı məcbur edə bilmir; KMS admin Decrypt icazəsinə malik deyil",emanet/api/system.py; infra/terraform/aws/kms.tf; tests/test_api_security.py::SeparationOfDuties
+5.4,Management responsibilities,Təşkilati,Y,"Rəhbərlik İTİS məqsədlərini, büdcəni və risk iştahını təsdiqləyir; idarəetmə təhlili",isms/09-management-review.md
+5.5,Contact with authorities,Təşkilati,Y,"CERT.az (milli kompüter insidentlərinə cavab komandası), fərdi məlumatlar üzrə səlahiyyətli dövlət orqanı, hüquq-mühafizə orqanları — insident planında əlaqə siyahısı",isms/policies/incident-response.md
+5.6,Contact with special interest groups,Təşkilati,Y,"OWASP Bakı, FIRST, AWS Security Bulletins, PyCA təhlükəsizlik elanları abunəliyi",isms/policies/information-security-policy.md
+5.7,Threat intelligence,Təşkilati,Y,"AWS GuardDuty, GitHub Dependabot/pip-audit, CVE monitorinqi; rüblük təhdid icmalı",infra/terraform/aws/monitoring.tf; .github/workflows/ci.yml
+5.8,Information security in project management,Təşkilati,Y,Hər backlog tapşırığı risk ID və Annex A nəzarəti ilə etiketlənir; təhlükəsizlik tələbləri 'Definition of Done'-dadır,project-management/README.md
+5.9,Inventory of information and other associated assets,Təşkilati,Y,"Aktiv reyestri — 16 aktiv, sahib, təsnifat, yer",isms/02-asset-register.csv
+5.10,Acceptable use of information and other associated assets,Təşkilati,Y,Əməkdaşlar üçün məqbul istifadə qaydaları,isms/policies/acceptable-use.md
+5.11,Return of assets,Təşkilati,Y,"İşdən çıxma prosedurunda noutbuk, YubiKey, AWS/GitHub girişlərinin qaytarılması",isms/policies/access-control.md
+5.12,Classification of information,Təşkilati,Y,4 səviyyə: İCTİMAİ / DAXİLİ / MƏXFİ / MƏHDUD; seyf məzmunu və açarlar MƏHDUD,isms/policies/information-security-policy.md; isms/02-asset-register.csv
+5.13,Labelling of information,Təşkilati,Y,AWS resurs etiketi DataClassification=restricted (default_tags); sənədlərin başlığında təsnifat,infra/terraform/aws/main.tf
+5.14,Information transfer,Təşkilati,Y,Yalnız TLS 1.2+/HSTS; S3-ə TLS olmadan giriş bucket siyasəti ilə qadağan; etibarlı şəxslər arası hissə ötürülməsi ECIES ilə,infra/Caddyfile; infra/terraform/aws/s3.tf; web/js/session.js
+5.15,Access control,Təşkilati,Y,"Ən az imtiyaz, RBAC (user/operator/auditor), obyekt səviyyəsində yoxlama (BOLA)",isms/policies/access-control.md; emanet/api/trustee.py
+5.16,Identity management,Təşkilati,Y,"Unikal istifadəçi ID, e-poçt əsaslı identifikasiya, dayandırma; AWS-də fərdi IAM Identity Center hesabları",emanet/api/auth.py; emanet/api/system.py
+5.17,Authentication information,Təşkilati,Y,Master parol serverə getmir (PBKDF2 600k + HKDF); server Argon2id saxlayır; bərpa kodu 125 bit,emanet/crypto/primitives.py; emanet/crypto/passwords.py
+5.18,Access rights,Təşkilati,Y,Rol dəyişikliyi bütün sessiyaları ləğv edir; rüblük giriş hüquqları icmalı,emanet/api/system.py; isms/08-internal-audit.md
+5.19,Information security in supplier relationships,Təşkilati,Y,"AWS, GitHub, Let's Encrypt təchizatçı qiymətləndirməsi",isms/policies/supplier-and-cloud.md
+5.20,Addressing information security within supplier agreements,Təşkilati,Y,"AWS Customer Agreement + DPA (GDPR SCC), AWS Artifact-dan ISO 27001/SOC 2 hesabatları",isms/policies/supplier-and-cloud.md
+5.21,Managing information security in the ICT supply chain,Təşkilati,Y,"Dəqiq versiyalı asılılıqlar, pip-audit, Trivy, SBOM; brauzerdə xarici CDN YOXDUR",requirements.txt; .github/workflows/ci.yml
+5.22,"Monitoring, review and change management of supplier services",Təşkilati,Y,"AWS Health Dashboard, ildə bir dəfə təchizatçı icmalı",isms/policies/supplier-and-cloud.md
+5.23,Information security for use of cloud services,Təşkilati,Y,"Paylaşılan məsuliyyət matrisi, IaC, region seçimi (eu-central-1), çıxış strategiyası",docs/shared-responsibility.md; infra/terraform/aws/
+5.24,Information security incident management planning and preparation,Təşkilati,Y,"İnsident cavab planı, 6 playbook, rollar, SLA",isms/policies/incident-response.md
+5.25,Assessment and decision on information security events,Təşkilati,Y,"Ciddilik matrisi (S1–S4), CloudWatch alarm → triaj",isms/policies/incident-response.md; infra/terraform/aws/monitoring.tf
+5.26,Response to information security incidents,Təşkilati,Y,"Playbook-lar: səhv açılma, KMS kompromisi, zərərli JS, sızma, hesab ələ keçirilməsi, planlaşdırıcı dayanması",isms/policies/incident-response.md
+5.27,Learning from information security incidents,Təşkilati,Y,"Günahlandırmayan (blameless) post-mortem şablonu, risk reyestrinin yenilənməsi",isms/policies/incident-response.md
+5.28,Collection of evidence,Təşkilati,Y,"HMAC audit zənciri, CloudTrail log validation, S3 Object Lock; sübutların hash-lənməsi",emanet/audit.py; infra/terraform/aws/audit_backup.tf
+5.29,Information security during disruption,Təşkilati,Y,"Pozulma zamanı belə təhlükəsizlik: planlaşdırıcı dayansa seyf açılmır (fail-closed), oxuma zamanı lazy qiymətləndirmə",emanet/switch.py; isms/policies/business-continuity.md
+5.30,ICT readiness for business continuity,Təşkilati,Y,"RTO 4 saat, RPO 24 saat; IaC ilə yenidən qurulma; rüblük bərpa testi",isms/policies/business-continuity.md
+5.31,"Legal, statutory, regulatory and contractual requirements",Təşkilati,Y,"Fərdi məlumatlar haqqında Qanun (AR, 2010), GDPR (AB istifadəçiləri), vərəsəlik hüququ ilə münasibət (seyf vəsiyyətnamə deyil)",isms/00-context-and-scope.md; isms/06-dpia.md
+5.32,Intellectual property rights,Təşkilati,Y,"Açıq mənbə lisenziyalarının uyğunluğu (MIT, Apache-2.0, BSD); SBOM",LICENSE; .github/workflows/ci.yml
+5.33,Protection of records,Təşkilati,Y,"CloudTrail 7 il, audit jurnalı dəyişməz, Backup Vault Lock",infra/terraform/aws/s3.tf; infra/terraform/aws/audit_backup.tf
+5.34,Privacy and protection of PII,Təşkilati,Y,"DPIA, məlumatların minimallaşdırılması, crypto-shredding ilə silmə, etibarlı şəxsə sahibin aktivliyi göstərilmir",isms/06-dpia.md; emanet/api/trustee.py
+5.35,Independent review of information security,Təşkilati,Y,İllik müstəqil pentest və xarici audit; daxili auditor rolu inkişafdan ayrıdır,isms/08-internal-audit.md
+5.36,"Compliance with policies, rules and standards for information security",Təşkilati,Y,Compliance-as-code — hər commit-də avtomatik yoxlama və sübut hesabatı,compliance/check_controls.py; evidence/compliance-report.md
+5.37,Documented operating procedures,Təşkilati,Y,"Yerləşdirmə, bərpa, açar rotasiyası, demo runbook-ları",docs/deployment.md; docs/runbooks.md
+6.1,Screening,İnsan,Y,Operator/inkişaf etdirici vəzifələri üçün işə qəbuldan əvvəl arayış yoxlaması (qanunvericiliyə uyğun),isms/policies/access-control.md
+6.2,Terms and conditions of employment,İnsan,Y,Əmək müqaviləsində məxfilik və İT öhdəlikləri bəndi,isms/policies/acceptable-use.md
+6.3,"Information security awareness, education and training",İnsan,Y,İşə qəbulda və ildə bir dəfə təlim; fişinq simulyasiyası; istifadəçilər üçün 'barmaq izi necə yoxlanılır' bələdçisi,isms/07-objectives-and-metrics.md
+6.4,Disciplinary process,İnsan,Y,Siyasət pozuntusu üçün intizam proseduru (Əmək Məcəlləsinə uyğun),isms/policies/acceptable-use.md
+6.5,Responsibilities after termination or change of employment,İnsan,Y,"Çıxışda bütün girişlərin eyni gün ləğvi, NDA müddətsiz qüvvədədir",isms/policies/access-control.md
+6.6,Confidentiality or non-disclosure agreements,İnsan,Y,Bütün əməkdaş və podratçılar üçün NDA,isms/policies/acceptable-use.md
+6.7,Remote working,İnsan,Y,"Uzaqdan iş: tam disk şifrələməsi, MFA, ictimai Wi-Fi-da VPN",isms/policies/acceptable-use.md
+6.8,Information security event reporting,İnsan,Y,"security@ ünvanı, SECURITY.md (məsuliyyətli açıqlama), 1 saat ərzində məlumat vermə öhdəliyi",SECURITY.md; isms/policies/incident-response.md
+7.1,Physical security perimeters,Fiziki,N,"Şirkətin öz data mərkəzi/server otağı yoxdur; fiziki infrastruktur AWS-in məsuliyyətidir (AWS ISO 27001 sertifikatı, AWS Artifact)",docs/shared-responsibility.md
+7.2,Physical entry,Fiziki,N,7.1 ilə eyni əsas — AWS məsuliyyəti,docs/shared-responsibility.md
+7.3,"Securing offices, rooms and facilities",Fiziki,Y,"Ofis (coworking) — kilidli şkaf, qonaq jurnalı; məhdud məlumat ofisdə kağızda saxlanılmır",isms/policies/acceptable-use.md
+7.4,Physical security monitoring,Fiziki,N,Server infrastrukturu AWS-dədir; ofisdə MƏHDUD məlumat emal olunmur,docs/shared-responsibility.md
+7.5,Protecting against physical and environmental threats,Fiziki,N,"AWS məsuliyyəti (data mərkəzi), multi-AZ ehtiyat planı BCP-də",isms/policies/business-continuity.md
+7.6,Working in secure areas,Fiziki,N,Təhlükəsiz zona yoxdur (bulud əsaslı əməliyyat),docs/shared-responsibility.md
+7.7,Clear desk and clear screen,Fiziki,Y,Ekran 5 dəqiqədə kilidlənir; tətbiq özü 15 dəq. gizli tab-dan sonra açarları yaddaşdan silir,web/js/app.js; isms/policies/acceptable-use.md
+7.8,Equipment siting and protection,Fiziki,Y,"Noutbuklar: tam disk şifrələməsi, kabel kilidi coworking-də",isms/policies/acceptable-use.md
+7.9,Security of assets off-premises,Fiziki,Y,"Noutbuklar evdə/səfərdə: şifrələmə, itərsə uzaqdan silmə (MDM)",isms/policies/acceptable-use.md
+7.10,Storage media,Fiziki,Y,USB yaddaş qadağandır; bərpa kodu kağızı istifadəçinin öz məsuliyyəti (təlimat verilir),isms/policies/acceptable-use.md
+7.11,Supporting utilities,Fiziki,N,"Elektrik, soyutma kimi köməkçi sistemlər AWS data mərkəzinin məsuliyyətidir (AWS ISO 27001 sertifikatı)",docs/shared-responsibility.md
+7.12,Cabling security,Fiziki,N,Kabel təhlükəsizliyi AWS data mərkəzinin məsuliyyətidir; ofisdə MƏHDUD məlumat emal olunmur,docs/shared-responsibility.md
+7.13,Equipment maintenance,Fiziki,Y,Noutbukların ƏS yeniləmələri avtomatik; EC2 üçün dnf-automatic,infra/terraform/aws/user_data.sh.tftpl
+7.14,Secure disposal or re-use of equipment,Fiziki,Y,Noutbuk utilizasiyasında NIST SP 800-88 silmə; AWS media məhvi AWS məsuliyyətidir,isms/policies/data-retention-and-deletion.md
+8.1,User endpoint devices,Texnoloji,Y,"Əməkdaş cihazları MDM, disk şifrələməsi; son istifadəçi cihazında açarlar yalnız yaddaşda saxlanılır",web/js/session.js; isms/policies/acceptable-use.md
+8.2,Privileged access rights,Texnoloji,Y,"SSH yoxdur, SSM Session Manager (CloudTrail-də qeyd); AWS root yalnız break-glass; operator rolu ayrıca",infra/terraform/aws/compute.tf; isms/policies/access-control.md
+8.3,Information access restriction,Texnoloji,Y,Etibarlı şəxs yalnız vəziyyəti görür; material yalnız RELEASED-də; S3 prefiks məhdudiyyəti,emanet/api/trustee.py; infra/terraform/aws/iam.tf
+8.4,Access to source code,Texnoloji,Y,"GitHub: branch protection, məcburi review, imzalı commit, 2FA",isms/policies/secure-development.md
+8.5,Secure authentication,Texnoloji,Y,"Zero-knowledge giriş, Argon2id, TOTP MFA (RFC 6238, replay qorunması), kilidləmə, __Host- cookie",emanet/api/auth.py; tests/test_api_security.py
+8.6,Capacity management,Texnoloji,Y,"CloudWatch CPU alarmı, konteyner mem/pids limiti, seyf ölçüsü limiti 5 MiB",infra/terraform/aws/monitoring.tf; docker-compose.yml
+8.7,Protection against malware,Texnoloji,Y,"GuardDuty, konteyner obraz skanı (Trivy), yalnız-oxu FS; seyfə fayl yükləməsi icra olunmur (yalnız şifrəmətn)",infra/terraform/aws/monitoring.tf; .github/workflows/ci.yml
+8.8,Management of technical vulnerabilities,Texnoloji,Y,"pip-audit, Trivy, Dependabot; kritik zəiflik 7 gün ərzində; dnf-automatic təhlükəsizlik yeniləmələri",isms/policies/secure-development.md
+8.9,Configuration management,Texnoloji,Y,Bütün infrastruktur Terraform-dadır; istehsal konfiqurasiyası kodda validasiya olunur (demo rejimi qadağandır),infra/terraform/aws/; emanet/config.py
+8.10,Information deletion,Texnoloji,Y,"Crypto-shredding: R, DEK sarğıları və hissələr silinir; SQLite secure_delete; saxlama müddətləri",emanet/services.py; isms/policies/data-retention-and-deletion.md
+8.11,Data masking,Texnoloji,Y,"Loglarda IP və istifadəçi ID-si var, məzmun/açar yoxdur; etibarlı şəxsə sahibin aktivlik vaxtı göstərilmir; UI-da gizli məlumat ulduzlarla",emanet/audit.py; web/js/views-owner.js
+8.12,Data leakage prevention,Texnoloji,Y,Audit metadata-da sirr açarları qadağandır (AuditLeakError); Referrer-Policy no-referrer; check-in tokeni URL fraqmentində,emanet/audit.py; web/js/checkin.js
+8.13,Information backup,Texnoloji,Y,"S3 versioning + Object Lock 30 gün; AWS Backup gündəlik EBS, Vault Lock; rüblük bərpa testi",infra/terraform/aws/s3.tf; infra/terraform/aws/audit_backup.tf
+8.14,Redundancy of information processing facilities,Texnoloji,Y,"EC2 auto-recover, IaC ilə 4 saatda başqa AZ/regionda qurulma; S3 11×9 davamlılıq",infra/terraform/aws/compute.tf; isms/policies/business-continuity.md
+8.15,Logging,Texnoloji,Y,"Strukturlaşdırılmış JSON log, HMAC audit zənciri, security_events, CloudTrail, VPC flow logs",emanet/audit.py; infra/terraform/aws/
+8.16,Monitoring activities,Texnoloji,Y,"9 metric filter + alarm, planlaşdırıcı alarmları, GuardDuty, dashboard",infra/terraform/aws/monitoring.tf
+8.17,Clock synchronization,Texnoloji,Y,"Amazon Time Sync Service (chrony, AL2023 defolt); vəziyyət maşını zamana həssasdır — saat sürüşməsi riski reyestrdədir",isms/04-risk-register.csv
+8.18,Use of privileged utility programs,Texnoloji,Y,"CLI əmrləri (grant-role, rotate-kms) yalnız SSM sessiyasında, audit jurnalına yazılır",emanet/cli.py
+8.19,Installation of software on operational systems,Texnoloji,Y,"Yalnız konteyner obrazı ilə yerləşdirmə, dəqiq versiya (repo_ref); serverdə əl ilə quraşdırma yoxdur",infra/terraform/aws/user_data.sh.tftpl
+8.20,Networks security,Texnoloji,Y,"Ayrıca VPC, yalnız 80/443, defolt SG bağlı, egress məhdud",infra/terraform/aws/network.tf
+8.21,Security of network services,Texnoloji,Y,"TLS 1.2/1.3, HSTS 2 il, Let's Encrypt avtomatik yeniləmə",infra/Caddyfile
+8.22,Segregation of networks,Texnoloji,Y,"Tətbiq yalnız daxili şəbəkədə (127.0.0.1/compose şəbəkəsi), xaricə yalnız Caddy açıqdır",docker-compose.yml; docker-compose.aws.yml
+8.23,Web filtering,Texnoloji,N,"Əməkdaşların veb trafiki üçün ayrıca filtr yoxdur — kiçik komanda, risk qəbul edilib; tətbiq tərəfində CSP connect-src 'self'",isms/04-risk-register.csv
+8.24,Use of cryptography,Texnoloji,Y,"Kriptoqrafiya siyasəti: AES-256-GCM, ECDH P-256, HKDF, PBKDF2 600k, Argon2id, Shamir GF(256), KMS",isms/policies/cryptography-and-key-management.md
+8.25,Secure development life cycle,Texnoloji,Y,Təhdid modeli → kod review → CI testləri → SAST/SCA → IaC skan → imzalı buraxılış,isms/policies/secure-development.md; .github/workflows/ci.yml
+8.26,Application security requirements,Texnoloji,Y,OWASP ASVS L2 əsaslı tələblər siyahısı; hər tələb testə bağlıdır,docs/threat-model.md
+8.27,Secure system architecture and engineering principles,Texnoloji,Y,"Zero-knowledge, defense in depth, fail-closed, iki açarlı kilid, açar ayrılığı",docs/architecture.md
+8.28,Secure coding,Texnoloji,Y,"Allowlist validasiya, parametrləşdirilmiş SQL, innerHTML qadağası (Trusted Types), sabit zamanlı müqayisə",emanet/validation.py; web/js/dom.js
+8.29,Security testing in development and acceptance,Texnoloji,Y,"Vahid, xassə, invariant, API, sıfır-bilik disk skanı, real brauzer E2E testləri",tests/; evidence/test-results.md
+8.30,Outsourced development,Texnoloji,N,Kənar inkişaf yoxdur; gələcəkdə olarsa 8.25 tələbləri müqaviləyə daxil ediləcək,isms/policies/secure-development.md
+8.31,"Separation of development, test and production environments",Texnoloji,Y,"Ayrı AWS hesabı/mühit (staging/prod), demo rejimi istehsalda qadağandır, testlər müvəqqəti qovluqda",emanet/config.py; infra/terraform/aws/variables.tf
+8.32,Change management,Texnoloji,Y,PR + review + yaşıl CI; Terraform plan review; dəyişiklik jurnalı,isms/policies/secure-development.md
+8.33,Test information,Texnoloji,Y,Testlərdə yalnız sintetik məlumat; istehsal məlumatı test mühitinə köçürülmür,tests/helpers.py; isms/policies/secure-development.md
+8.34,Protection of information systems during audit testing,Texnoloji,Y,"Pentest staging-də, istehsalda yalnız yazılı razılıq və pəncərə ilə; auditor rolu yalnız oxuya bilir",isms/08-internal-audit.md

@@ -1,0 +1,9 @@
+# cp terraform.tfvars.example terraform.tfvars  (bu fayl .gitignore-dadır)
+region       = "eu-central-1"
+environment  = "prod"
+acme_email   = "siz@example.az"
+alert_email  = "siz@example.az"
+ses_sender   = "siz@example.az"
+repo_url     = "https://github.com/USERNAME/emanet.git"
+repo_ref     = "v1.0.0"
+# domain     = "emanet.example.az"   # boş qalsa <IP>.sslip.io

@@ -1,0 +1,31 @@
+id,title,sprint,subject,annex_a,risk,status
+EM-01,Shamir GF(256) Python + test vektorları,1,Kriptoqrafiya,8.24,R-02,Done
+EM-02,Brauzer kriptoqrafiyası (WebCrypto) və Python uyğunluğu,1,Kriptoqrafiya,8.24;8.29,R-25,Done
+EM-03,ECIES P-256 hissə şifrələməsi + kontekst bağlılığı,1,Kriptoqrafiya,8.24,R-13,Done
+EM-04,İki açarlı kilid KEK=HKDF(S‖R),1,Kriptoqrafiya,8.24,R-02,Done
+EM-05,Zero-knowledge giriş (PBKDF2 → auth/enc ayrılığı),1,Kriptoqrafiya,5.17;8.5,R-04,Done
+EM-06,'Sağam' vəziyyət maşını + invariant testləri,2,Kriptoqrafiya/İTİS,5.29,R-01,Done
+EM-07,Barmaq izi yoxlaması (MITM-ə qarşı),2,Kriptoqrafiya,8.24,R-13,Done
+EM-08,Hissə öhdəlikləri (saxta hissənin aşkarlanması),2,Kriptoqrafiya,8.24,R-14,Done
+EM-09,Bərpa kodu axını,2,Kriptoqrafiya,5.17,R-06,Done
+EM-10,Sessiya + CSRF + sürət limiti + başlıqlar,2,Bulud/Tətbiq,8.5;8.26,R-11;R-17,Done
+EM-11,BOLA və mass assignment qorunması,2,Tətbiq,8.3;8.28,R-18,Done
+EM-12,HMAC audit zənciri + təhlükəsizlik hadisələri,2,İTİS,8.15,R-19,Done
+EM-13,Veb interfeys (sahib + etibarlı şəxs),3,—,8.26,R-16,Done
+EM-14,Real brauzer E2E testi (Playwright),3,—,8.29,R-25,Done
+EM-15,Terraform: VPC/EC2/IMDSv2/SG,3,Bulud,8.20;8.9,R-21,Done
+EM-16,Terraform: KMS (açar ayrılığı + kontekst şərti),3,Bulud,8.24;5.3,R-10,Done
+EM-17,Terraform: S3 Object Lock + SSE-KMS + TLS-only,3,Bulud,8.13,R-15,Done
+EM-18,Terraform: EventBridge + Lambda planlaşdırıcı,3,Bulud,5.30,R-07,Done
+EM-19,Terraform: CloudWatch alarmları + CloudTrail + Backup,3,Bulud,8.16;8.15,R-07;R-09,Done
+EM-20,Risk reyestri + metodologiya,4,İTİS,6.1,—,Done
+EM-21,SoA (93 nəzarət),4,İTİS,6.1.3,—,Done
+EM-22,Siyasətlər (9) + DPIA,4,İTİS,5.1;5.34,R-20,Done
+EM-23,Compliance-as-code,4,İTİS,5.36,—,Done
+EM-24,Daxili audit + düzəldici tədbirlər (F-1…F-3),4,İTİS,9.2,R-26,Done
+EM-25,Real AWS yerləşdirmə + ekran görüntüləri,5,Bulud,—,—,To do (tələbə)
+EM-26,Brauzerdə Argon2id (WASM),5,Kriptoqrafiya,8.24,R-12,Backlog
+EM-27,SMS ikinci bildiriş kanalı,5,Bulud,8.14,R-08,Backlog
+EM-28,ML-KEM-768 hibrid hissə şifrələməsi,6,Kriptoqrafiya,8.24,R-27,Backlog
+EM-29,İmzalı brauzer genişlənməsi (kod bütövlüyü),6,Kriptoqrafiya,8.25,R-05,Backlog
+EM-30,Feldman VSS istehsala (saxtakar sahib modeli),6,Kriptoqrafiya,8.24,—,Backlog
