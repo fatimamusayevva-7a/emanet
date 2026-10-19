@@ -1,0 +1,8 @@
+# Gitleaks istisnalari - real sirr deyil, standart test vektorlaridir
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Kriptoqrafik test vektorlari (RFC 6238, Python-JS uygunluq vektorlari)"
+paths = ['''tests/js/vectors\.json''']
+regexes = ['''GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ''']

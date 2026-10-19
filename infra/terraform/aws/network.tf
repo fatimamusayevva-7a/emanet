@@ -67,7 +67,7 @@ resource "aws_security_group" "app" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
-    description = "Paket depolari (HTTP) — yalniz quraşdırma zamanı"
+    description = "Paket depolari (HTTP) - yalniz qurasdirma zamani"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
